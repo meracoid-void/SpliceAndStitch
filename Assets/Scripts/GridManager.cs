@@ -22,6 +22,9 @@ public class GridManager : MonoBehaviour
     [SerializeField]
     private List<Vector2> _eventTiles;
 
+    [SerializeField]
+    private Player _playerPrefab;
+
     private Dictionary<Vector2, Tile> _grid;
 
     void Start()
@@ -52,6 +55,7 @@ public class GridManager : MonoBehaviour
         if (tile != null)
         {
             tile.SetStartingColor();
+            var player = Instantiate(_playerPrefab, new Vector3(_startingTile.x, _startingTile.y, 0), Quaternion.identity);
         }
     }
 
