@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -9,6 +10,15 @@ public class GridManager : MonoBehaviour
 
     [SerializeField]
     private Tile _tilePrefab;
+
+    [SerializeField]
+    private StartingTile _startingTilePrefab;
+
+    [SerializeField]
+    private EndingTile _endingTilePrefab;
+
+    [SerializeField]
+    private EventTile _eventTilePrefab;
 
     [SerializeField]
     private Transform _cam;
@@ -30,42 +40,6 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         GenerateGrid();
-
-        SetEventTiles();
-        SetStartingTile();
-        SetEndingTile();
-    }
-
-    void SetEventTiles()
-    {
-        foreach(var tilePos in _eventTiles)
-        {
-            var tile = GetTileAtPosition(tilePos);
-            if (tile != null)
-            {
-                tile.SetEventColor();
-            }
-        }
-    }
-
-    void SetStartingTile()
-    {
-
-        var tile = GetTileAtPosition(_startingTile);
-        if (tile != null)
-        {
-            tile.SetStartingColor();
-            var player = Instantiate(_playerPrefab, new Vector3(_startingTile.x, _startingTile.y, 0), Quaternion.identity);
-        }
-    }
-
-    void SetEndingTile()
-    {
-        var tile = GetTileAtPosition(_endTile);
-        if (tile != null)
-        {
-            tile.SetEndingColor();
-        }
     }
 
     void GenerateGrid()
@@ -75,14 +49,41 @@ public class GridManager : MonoBehaviour
         {
             for(int y = 0; y < _height; y++)
             {
-                var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
-                spawnedTile.name = $"Tile {x} {y}";
+                if(x == _startingTile.x && y == _startingTile.y)
+                {
+                    var spawnedTile = Instantiate(_startingTilePrefab, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x} {y}";
+                    spawnedTile.Init();
 
-                var isOffset = (x + y) % 2 == 1;
+                    var player = Instantiate(_playerPrefab, new Vector3(x, y), Quaternion.identity);
 
-                spawnedTile.Init(isOffset);
+                    _grid[new Vector2(x, y)] = spawnedTile;
+                }
+                else if (x == _endTile.x && y == _endTile.y)
+                {
+                    var spawnedTile = Instantiate(_endingTilePrefab, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x} {y}";
+                    spawnedTile.Init();
 
-                _grid[new Vector2(x, y)] = spawnedTile;
+                    _grid[new Vector2(x, y)] = spawnedTile;
+                }
+                else if (_eventTiles.Where(v => v.x == x && v.y == y).Count() > 0)
+                {
+                    var spawnedTile = Instantiate(_eventTilePrefab, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x} {y}";
+                    spawnedTile.Init();
+
+                    _grid[new Vector2(x, y)] = spawnedTile;
+                }
+                else
+                {
+                    var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x} {y}";
+                    var isOffset = (x + y) % 2 == 1;
+                    spawnedTile.Init(isOffset);
+
+                    _grid[new Vector2(x, y)] = spawnedTile;
+                }
             }
         }
 
