@@ -97,3 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e4635d0c6f2054bb21ed0f5f49b01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {fileID: 482433555601546575}
+  moveDistance: 0

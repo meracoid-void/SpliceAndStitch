@@ -15,6 +15,8 @@ public class Tile : MonoBehaviour
     [SerializeField] 
     public GameObject _highlight;
 
+    public bool isPlayerEnter;
+
     public void Init(bool isOffset)
     {
         if (isOffset)
@@ -27,6 +29,7 @@ public class Tile : MonoBehaviour
             Debug.Log($"Will be base color ${_baseColor.ToString()}");
             _renderer.color = _baseColor;
         }
+        isPlayerEnter = false;
     }
 
     private void OnMouseEnter()
@@ -37,6 +40,12 @@ public class Tile : MonoBehaviour
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
+    }
+
+    private void OnMouseDown()
+    {
+        var player = (Player)FindObjectOfType(typeof(Player));
+        player.MovePlayer(this.transform.position);
     }
 
 }

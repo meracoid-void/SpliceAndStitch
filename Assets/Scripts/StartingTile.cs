@@ -11,6 +11,7 @@ public class StartingTile : Tile
     public void Init()
     {
         _renderer.color = _startingColor;
+        this.isPlayerEnter = true;
     }
 
 

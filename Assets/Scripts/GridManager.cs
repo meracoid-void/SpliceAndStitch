@@ -56,6 +56,7 @@ public class GridManager : MonoBehaviour
                     spawnedTile.Init();
 
                     var player = Instantiate(_playerPrefab, new Vector3(x, y), Quaternion.identity);
+                    player.name = "Player 1";
 
                     _grid[new Vector2(x, y)] = spawnedTile;
                 }
