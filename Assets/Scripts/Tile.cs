@@ -45,7 +45,11 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         var player = (Player)FindObjectOfType(typeof(Player));
-        player.MovePlayer(this.transform.position);
+        var manager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
+        bool isMove = player.MovePlayer(this.transform.position);
+        this.isPlayerEnter = isMove;
+        Debug.Log(this.GetType().Name);
+        manager.ChangeTile(this, isMove);
     }
 
 }

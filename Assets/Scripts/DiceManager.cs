@@ -16,7 +16,14 @@ public class DiceManager : MonoBehaviour
         {
             int randomNum = Random.Range(1, 7);
 
-            text.text = $"Move {randomNum}";
+            if(randomNum == 1)
+            {
+                text.text = $"Move 1 Space";
+            }
+            else
+            {
+                text.text = $"Move 1 - {randomNum} Spaces";
+            }
             textGame.SetActive(true);
             player.moveDistance = randomNum;
         }

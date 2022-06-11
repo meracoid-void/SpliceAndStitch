@@ -10,13 +10,15 @@ public class Player : MonoBehaviour
 
     public int moveDistance = 0;
 
-    public void MovePlayer(Vector3 pos)
+    public bool MovePlayer(Vector3 pos)
     {
         if (moveDistance > 0 && CalcDistance(pos))
         {
             playerPos.position = pos;
             moveDistance = 0;
+            return true;
         }
+        return false;
     }
 
     bool CalcDistance(Vector3 pos)
