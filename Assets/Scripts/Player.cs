@@ -23,7 +23,26 @@ public class Player : MonoBehaviour
 
     bool CalcDistance(Vector3 pos)
     {
+        Tile tile = GetTileAtPosition(pos);
+        if (tile == null || tile.isObstacle)
+        {
+            // The tile does not exist or is an obstacle, so the player cannot move to it
+            return false;
+        }
         return Math.Abs(pos.x - playerPos.position.x) + Math.Abs(pos.y - playerPos.position.y) <= moveDistance;
     }
 
+    Tile GetTileAtPosition(Vector3 pos)
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 0.1f);
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            Tile tile = hitCollider.GetComponent<Tile>();
+            if (tile != null)
+            {
+                return tile;
+            }
+        }
+        return null;
+    }
 }

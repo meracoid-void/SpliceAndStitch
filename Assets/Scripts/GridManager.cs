@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,9 @@ public class GridManager : MonoBehaviour
 
     [SerializeField]
     private EventTile _eventTilePrefab;
+
+    [SerializeField]
+    private WallTile _wallTilePrefab;
 
     [SerializeField]
     private Transform _cam;

@@ -14,7 +14,6 @@ public class PlayerManager : MonoBehaviour
     public void Init()
     {
         currentTile = (StartingTile)FindObjectOfType(typeof(StartingTile));
-        Debug.Log(currentTile.name);
     }
 
     public void ChangeTile(Tile tile, bool didChange)
@@ -24,6 +23,24 @@ public class PlayerManager : MonoBehaviour
             currentTile.isPlayerEnter = false;
             currentTile = tile;
             _textObj.SetActive(false);
+            if( currentTile is EventTile)
+            {
+                // Start a random event for the level
+                Debug.Log("Start random event");
+            }
+            else if(currentTile is EndingTile)
+            {
+                // Start ending fight
+                Debug.Log("Start End Fight");
+            }
+            else
+            {
+                if(Random.Range(0, 3) == 0)
+                {
+                    // Start Random Encounter
+                    Debug.Log("Start Random Encounter");
+                }
+            }
         }
     }
 

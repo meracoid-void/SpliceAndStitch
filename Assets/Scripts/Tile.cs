@@ -17,19 +17,20 @@ public class Tile : MonoBehaviour
 
     public bool isPlayerEnter;
 
+    public bool isObstacle;
+
     public void Init(bool isOffset)
     {
         if (isOffset)
         {
-            Debug.Log($"Will be offset color ${_offsetColor.ToString()}");
             _renderer.color = _offsetColor;
         }
         else
         {
-            Debug.Log($"Will be base color ${_baseColor.ToString()}");
             _renderer.color = _baseColor;
         }
         isPlayerEnter = false;
+        isObstacle = false;
     }
 
     private void OnMouseEnter()
@@ -48,7 +49,6 @@ public class Tile : MonoBehaviour
         var manager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
         bool isMove = player.MovePlayer(this.transform.position);
         this.isPlayerEnter = isMove;
-        Debug.Log(this.GetType().Name);
         manager.ChangeTile(this, isMove);
     }
 
