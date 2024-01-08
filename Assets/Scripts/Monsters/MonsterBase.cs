@@ -12,7 +12,7 @@ namespace Assets.Scripts.Monsters
     public class MonsterBase : ScriptableObject
     {
         [SerializeField]
-        string name;
+        string monsterName;
         [TextArea]
         [SerializeField]
         string description;
@@ -34,9 +34,9 @@ namespace Assets.Scripts.Monsters
         [SerializeField]
         List<LearnableMoves> learnableMoves;
 
-        public string Name
+        public string MonsterName
         {
-            get { return name; }
+            get { return monsterName; }
         }
 
         public string Description

@@ -37,6 +37,9 @@ public class GridManager : MonoBehaviour
     private List<Vector2> _eventTiles;
 
     [SerializeField]
+    private List<Vector2> _wallTiles;
+
+    [SerializeField]
     private Player _playerPrefab;
 
     [SerializeField]
@@ -62,7 +65,7 @@ public class GridManager : MonoBehaviour
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.Init();
 
-                    var player = Instantiate(_playerPrefab, new Vector3(x, y), Quaternion.identity);
+                    var player = Instantiate(_playerPrefab, new Vector3(x, y, -5), Quaternion.identity);
                     player.name = "Player 1";
 
                     _grid[new Vector2(x, y)] = spawnedTile;
@@ -78,6 +81,14 @@ public class GridManager : MonoBehaviour
                 else if (_eventTiles.Where(v => v.x == x && v.y == y).Count() > 0)
                 {
                     var spawnedTile = Instantiate(_eventTilePrefab, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x} {y}";
+                    spawnedTile.Init();
+
+                    _grid[new Vector2(x, y)] = spawnedTile;
+                }
+                else if(_wallTiles.Where(v => v.x == x && v.y == y).Count() > 0)
+                {
+                    var spawnedTile = Instantiate(_wallTilePrefab, new Vector3(x, y), Quaternion.identity);
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.Init();
 

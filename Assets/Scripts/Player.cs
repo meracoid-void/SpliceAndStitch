@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     {
         if (moveDistance > 0 && CalcDistance(pos))
         {
+            pos.z = -5;
             playerPos.position = pos;
             moveDistance = 0;
             return true;
