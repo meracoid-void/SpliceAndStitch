@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242c33e72ce41904aac6756f42810627, type: 3}
   m_Name: EarthWorm
   m_EditorClassIdentifier: 
-  name: Earth Worm
-  description: 
+  monsterName: Earthworm
+  description: The tiniest and most pathetic of the bunch. Earthworms don't have
+    much strength, but they make up for it in thier basic-ness
+  monsterType1: 0
+  monsterType2: 0
+  frontSprite: {fileID: 21300000, guid: da82db17816009d48936dd1b0efa6fd5, type: 3}
+  backSprite: {fileID: 21300000, guid: 9e3f087299237654396c70adfd64269b, type: 3}
   maxHp: 5
   attack: 1
   defense: 3
   spAttack: 1
   spDefense: 3
   speed: 1
-  learnableMoves: []
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 41fa7147f2bf8f349b61abb2a08dab9c, type: 2}
+    level: 0

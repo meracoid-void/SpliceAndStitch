@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207209447777697741}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5603671238565985451}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4447993535027434592
 SpriteRenderer:
@@ -110,6 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8972125971014209697}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -117,7 +118,6 @@ Transform:
   m_Children:
   - {fileID: 6534706434227592568}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3098752655062136838
 SpriteRenderer:
@@ -185,11 +185,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseColor: {r: 0.56042886, g: 0.7264151, b: 0.5242524, a: 1}
   _offsetColor: {r: 0.3776582, g: 0.754717, b: 0.29547882, a: 1}
-  _eventColor: {r: 0.9622642, g: 0.05900679, b: 0.8588429, a: 1}
-  _startingColor: {r: 0.9811321, g: 0.032395888, b: 0.032395888, a: 1}
-  _endingColor: {r: 1, g: 1, b: 1, a: 1}
   _renderer: {fileID: 3098752655062136838}
   _highlight: {fileID: 1207209447777697741}
+  isPlayerEnter: 0
+  isObstacle: 0
 --- !u!61 &3428641175793819013
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,6 +199,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

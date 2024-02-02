@@ -26,6 +26,9 @@ namespace Assets.Scripts.Monsters
         [SerializeField]
         int _ap;
 
+        [SerializeField]
+        MonsterType _type;
+
         public string Name
         {
             get { return _name; }
@@ -49,6 +52,11 @@ namespace Assets.Scripts.Monsters
         public int AP
         {
             get { return _ap; }
+        }
+
+        public MonsterType Type
+        {
+            get { return _type; }
         }
     }
 }

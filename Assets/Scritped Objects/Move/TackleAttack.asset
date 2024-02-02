@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TackleAttack
   m_EditorClassIdentifier: 
   _name: Tackle Attack
-  _description: 
+  _description: A basic attack
   _power: 1
   _accuracy: 100
   _ap: 1
+  _type: 0

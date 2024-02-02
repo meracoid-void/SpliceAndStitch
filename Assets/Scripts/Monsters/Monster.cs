@@ -1,8 +1,5 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Monsters
@@ -64,5 +61,53 @@ namespace Assets.Scripts.Monsters
         {
             get { return Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10; }
         }
+
+        public DamageDetails TakeDamage(Move move, Monster attacker)
+        {
+            float critical = 1f;
+            if (Random.value * 100f <= 6.25f)
+            {
+                critical = 2f;
+            }
+
+            float type = TypeChart.GetEffectiveness(move.Base.Type, this.Base.MonsterType1) *
+                TypeChart.GetEffectiveness(move.Base.Type, this.Base.MonsterType2);
+
+            var damangeDetails = new DamageDetails()
+            {
+                TypeEffectiveness = type,
+                Critical = critical,
+                IsFainted = false
+            };
+
+            // Damage Calc https://bulbapedia.bulbagarden.net/wiki/Damage#Damage_calculation
+            float modifiers = Random.Range(0.85f, 1f) * type * critical;
+            float a = (2 * attacker.Level + 10) / 250f;
+            float d = a * move.Base.Power * ((float)attacker.Attack / Defense) + 2;
+            int damage = Mathf.FloorToInt(d * modifiers);
+
+            HP -= damage;
+            if (HP <= 0)
+            {
+                HP = 0;
+                damangeDetails.IsFainted = true;
+            }
+            return damangeDetails;
+
+        }
+
+        public Move GetRandomMove()
+        {
+            int r = Random.Range(0, Moves.Count);
+            return Moves[r];
+        }
     }
+
+    public class DamageDetails
+    {
+        public bool IsFainted { get; set; }
+        public float Critical { get; set; }
+        public float TypeEffectiveness { get; set; }
+    }
+
 }
